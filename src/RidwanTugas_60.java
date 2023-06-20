@@ -1,9 +1,9 @@
-
 /*
 * Nama      : M. Ridwan Alsafir Gusnendar
 * NIM       : 202222031
 * Kelompok  : Teknik Informatika (Sore)
  */
+
 // Main Menu
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,8 +16,10 @@ public class RidwanTugas_60 {
         String ridwanPilihan;
         boolean ridwanLanjut = true;
         boolean ridwanKeluar = true;
+
         while (ridwanLanjut) {
             ridwanHapusLayar();
+
             System.out.println("Database Perpustakaan\n");
             System.out.println("1.\tLihat seluruh buku");
             System.out.println("2.\tCari data buku");
@@ -36,30 +38,35 @@ public class RidwanTugas_60 {
                     System.out.println("=================");
                     ridwanTampilkanData();
                     break;
+
                 case "2":
                     System.out.println("\n=========");
                     System.out.println("CARI BUKU");
                     System.out.println("=========");
                     // cari data
                     break;
+
                 case "3":
                     System.out.println("\n================");
                     System.out.println("TAMBAH DATA BUKU");
                     System.out.println("================");
                     // tambah data
                     break;
+
                 case "4":
                     System.out.println("\n==============");
                     System.out.println("UBAH DATA BUKU");
                     System.out.println("==============");
                     // ubah data
                     break;
+
                 case "5":
                     System.out.println("\n===============");
                     System.out.println("HAPUS DATA BUKU");
                     System.out.println("===============");
                     // hapus data
                     break;
+
                 case "6":
                     ridwanLanjut = false;
                     ridwanLanjut = ridwanYaAtauTidak("Apakah anda ingin keluar");
@@ -68,7 +75,6 @@ public class RidwanTugas_60 {
                 default:
                     System.err.println("\nInput anda tidak ditemukan\nSilahkan pilih [1-6]");
             }
-
             ridwanLanjut = ridwanYaAtauTidak("Apakah Anda ingin melanjutkan");
         }
     }
@@ -76,8 +82,6 @@ public class RidwanTugas_60 {
     private static void ridwanTampilkanData() throws IOException{
         System.out.println("Nantinya data akan ditampilkan di sini!!");
     }
-
-
 
     private static boolean ridwanYaAtauTidak(String ridwanPesan) {
         Scanner ridwanMenu = new Scanner(System.in);
