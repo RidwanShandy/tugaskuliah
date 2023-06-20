@@ -39,30 +39,35 @@ public class RidwanTugas_61 {
                     System.out.println("=================");
                     ridwanTampilkanData();
                     break;
+
                 case "2":
                     System.out.println("\n=========");
                     System.out.println("CARI BUKU");
                     System.out.println("=========");
                     // cari ridwanData
                     break;
+
                 case "3":
                     System.out.println("\n================");
                     System.out.println("TAMBAH DATA BUKU");
                     System.out.println("================");
                     // tambah ridwanData
                     break;
+
                 case "4":
                     System.out.println("\n==============");
                     System.out.println("UBAH DATA BUKU");
                     System.out.println("==============");
                     // ubah ridwanData
                     break;
+
                 case "5":
                     System.out.println("\n===============");
                     System.out.println("HAPUS DATA BUKU");
                     System.out.println("===============");
                     // hapus ridwanData
                     break;
+
                 case "6":
                     ridwanLanjut = false;
                     ridwanLanjut = ridwanYaAtauTidak("Apakah anda ingin keluar");
@@ -90,8 +95,8 @@ public class RidwanTugas_61 {
             return;
         }
 
-        System.out.println("\n| No |\tTahun |\tPenulis |\tPenerbit |\tJudul Buku");
-        System.out.println("------------------------------------------------------");
+        System.out.println("\n| No |\tTahun |\tPenulis                |\tPenerbit               |\tJudul Buku");
+        System.out.println("----------------------------------------------------------------------------------------------------------");
 
         String ridwanData = ridwanBufferInput.readLine();
         int ridwanNomorData = 0;
@@ -111,7 +116,7 @@ public class RidwanTugas_61 {
             ridwanData = ridwanBufferInput.readLine();
         }
 
-        System.out.println("------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------------------------------");
     }
     //Utility
     private static boolean ridwanYaAtauTidak(String ridwanPesan) {
