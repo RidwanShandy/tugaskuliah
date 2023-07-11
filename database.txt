@@ -3,8 +3,4 @@ Tensura_2018_1,2018,Fuse,Micro Magazine,That Time I Got Reincarnated as a Slime
 SwordArtOnlineAlicization_2018_1,2018,Reki Kawahara,Kadokawa,Sword Art Online: Alicization
 ReZeroStartingLifeInAnotherWorld_2016_1,2016,Tappei Nagatsuki,Media Factory,Re:Zero - Starting Life in Another World
 TheRisingoftheShieldHero_2019_1,2019,Aneko Yusagi,Kadokawa,The Rising of the Shield Hero
-AkatsukiNoYona_2014_1,2014,Mizuho Kusanagi,Hakusensha,Yona of the Dawn
-DanMachi_2015_1,2015,Fujino Ōmori,Square Enix,Is It Wrong to Try to Pick Up Girls in a Dungeon?
-BlackClover_2017_1,2017,Yūki Tabata,Shueisha,Black Clover
-MadeInAbyss_2017_1,2017,Akihito Tsukushi,Takeshobo,Made in Abyss
-TheAncientMagusBride_2017_1,2017,Kore Yamazaki,Mag Garden,The Ancient Magus' Bride
+afkjadfgsdgsfgsfg_2001_1,2001,afkjadfgsdgsfgsfg,dsfgsfhsfghs,sdfgsfghsfhsfghsg
