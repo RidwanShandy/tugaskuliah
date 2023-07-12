@@ -80,65 +80,67 @@ public class RidwanTugas_65 {
         }
     }
     //Operasi
-    public static void ridwanUpdateData() throws IOException {
-        // Ambil Database Original
+    public static void ridwanUpdateData() throws IOException{
+        // kita ambil database original
         File database = new File("database.txt");
-        FileReader fileInput = new FileReader(database);
-        BufferedReader bufferedInput = new BufferedReader(fileInput);
+        FileReader ridwanFileInput = new FileReader(database);
+        BufferedReader bufferedInput = new BufferedReader(ridwanFileInput);
 
-        // Buat Database Sementara
+        // kita buat database sementara
         File tempDB = new File("tempDB.txt");
-        FileWriter fileOutput = new FileWriter(tempDB);
-        BufferedWriter bufferedOutput = new BufferedWriter(fileOutput);
+        FileWriter ridwanFileOutput = new FileWriter(tempDB);
+        BufferedWriter bufferedOutput = new BufferedWriter(ridwanFileOutput);
 
-        // Tampilkan Data
+        // tampilkan data
         System.out.println("Daftar Buku");
         ridwanTampilkanData();
 
-        // Ambil Input User Untuk Delete Data
+        // ambil user input / pilihan data
         Scanner terminalInput = new Scanner(System.in);
-        System.out.print("\nMasukkan nomor buku yang akan diupdate: ");
+        System.out.print("\nMasukan nomor buku yang akan diupdate: ");
         int updateNum = terminalInput.nextInt();
 
-        // Menampikan Data Yang Akan Diupdate
+        // tampilkan data yang ingin diupdate
+
         String data = bufferedInput.readLine();
         int entryCounts = 0;
 
-        while (data != null) {
+        while (data != null){
             entryCounts++;
 
-            StringTokenizer st = new StringTokenizer(data, ",");
+            StringTokenizer st = new StringTokenizer(data,",");
 
-            // Menampilkan entryCounts == updateNum
-            if (updateNum == entryCounts) {
-                System.out.println("\nData yang ingin anda update adalah: ");
-                System.out.println("-------------------------");
-                System.out.println("Referensi   : " + st.nextToken());
-                System.out.println("Tahun       : " + st.nextToken());
-                System.out.println("Penulis     : " + st.nextToken());
-                System.out.println("Penerbit    : " + st.nextToken());
-                System.out.println("Judul       : " + st.nextToken());
+            // tampilkan entrycounts == updateNum
+            if (updateNum == entryCounts){
+                System.out.println("\nData yang ingin anda update adalah:");
+                System.out.println("---------------------------------------");
+                System.out.println("Referensi           : " + st.nextToken());
+                System.out.println("Tahun               : " + st.nextToken());
+                System.out.println("Penulis             : " + st.nextToken());
+                System.out.println("Penerbit            : " + st.nextToken());
+                System.out.println("Judul               : " + st.nextToken());
 
-                // Update Data
-                // Ambil Input Dari User
-                String[] fieldData = {" tahun", " penulis", " penerbit", " judul"};
+                // update data
+                // mengambil input dari user
+
+                String[] fieldData = {"tahun","penulis","penerbit","judul"};
                 String[] tempData = new String[4];
 
                 st = new StringTokenizer(data,",");
                 String originalData = st.nextToken();
 
-                for (int i = 0; i < fieldData.length; i++) {
-                    boolean isUpdate = ridwanYaAtauTidak("Apakah anda ingin merubah" + fieldData[i]);
+                for(int i=0; i < fieldData.length ; i++) {
+                    boolean isUpdate = ridwanYaAtauTidak("apakah anda ingin merubah " + fieldData[i]);
                     originalData = st.nextToken();
-                    if (isUpdate) {
-                        // User Input
+                    if (isUpdate){
+                        //user input
 
-                        if (fieldData[i].equalsIgnoreCase("tahun")) {
-                            System.out.print("Masukkan tahun terbit, format (YYYY): ");
-                            tempData[i] = terminalInput.nextLine();
-                        } else  {
+                        if (fieldData[i].equalsIgnoreCase("tahun")){
+                            System.out.print("masukan tahun terbit, format=(YYYY): ");
+                            tempData[i] = ridwanAmbilTahun();
+                        } else {
                             terminalInput = new Scanner(System.in);
-                            System.out.print("\nMasukkan " + fieldData[i] + " baru: ");
+                            System.out.print("\nMasukan " + fieldData[i] + " baru: ");
                             tempData[i] = terminalInput.nextLine();
                         }
 
@@ -147,51 +149,52 @@ public class RidwanTugas_65 {
                     }
                 }
 
-                //Tampilkan Data Baru ke Lauar
-                st = new StringTokenizer(data, ",");
+                // tampilkan data baru ke layar
+                st = new StringTokenizer(data,",");
                 st.nextToken();
-                System.out.println("\nData baru anda adalah: ");
-                System.out.println("-------------------------");
-                System.out.println("Tahun       : " + st.nextToken() + " --> " + tempData[0]);
-                System.out.println("Penulis     : " + st.nextToken() + " --> " + tempData[1]);
-                System.out.println("Penerbit    : " + st.nextToken() + " --> " + tempData[2]);
-                System.out.println("Judul       : " + st.nextToken() + " --> " + tempData[3]);
+                System.out.println("\nData baru anda adalah ");
+                System.out.println("---------------------------------------");
+                System.out.println("Tahun               : " + st.nextToken() + " --> " + tempData[0]);
+                System.out.println("Penulis             : " + st.nextToken() + " --> " + tempData[1]);
+                System.out.println("Penerbit            : " + st.nextToken() + " --> " + tempData[2]);
+                System.out.println("Judul               : " + st.nextToken() + " --> " + tempData[3]);
 
-                boolean isUpdate = ridwanYaAtauTidak("Apakah anda yakin ingin mengupdate data tersebut");
 
-                if (isUpdate) {
+                boolean isUpdate = ridwanYaAtauTidak("apakah anda yakin ingin mengupdate data tersebut");
 
-                    //Cek Data Baru Di Database
-                    boolean isExist = ridwanCekBukuDiDatabase (tempData, false);
+                if (isUpdate){
 
-                    if (isExist) {
-                        System.err.println("Data buku sudah ada di database, proses update dibatalkan, \nSilahkan delete data yang bersangkutan");
-                        //Copy Data
+                    // cek data baru di database
+                    boolean isExist = ridwanCekBukuDiDatabase(tempData,false);
+
+                    if(isExist){
+                        System.err.println("data buku sudah ada di database, proses update dibatalkan, \nsilahkan delete data yang bersangkutan");
+                        // copy data
                         bufferedOutput.write(data);
 
                     } else {
 
-                        //Format Data Baru Kedalam Database
+                        // format data baru kedalam database
                         String tahun = tempData[0];
-                        String penulis = tempData [1];
-                        String penerbit = tempData [2];
-                        String judul = tempData [3];
+                        String penulis = tempData[1];
+                        String penerbit = tempData[2];
+                        String judul = tempData[3];
 
-                        // Buat Primary Key
+                        // kita bikin primary key
                         long nomorEntry = ambilEntryPerTahun(penulis, tahun) + 1;
 
-                        String penulisTanpaSpasi = penulis.replaceAll("\\s+", "");
-                        String primaryKey = penulisTanpaSpasi + "__" + tahun + "__" + nomorEntry;
+                        String punulisTanpaSpasi = penulis.replaceAll("\\s+","");
+                        String primaryKey = punulisTanpaSpasi+"_"+tahun+"_"+nomorEntry;
 
-                        // Tulis Data Ke Database
-                        bufferedOutput.write(primaryKey + "," + tahun + "," + penulis + "," + penerbit + "," + judul);
+                        // tulis data ke database
+                        bufferedOutput.write(primaryKey + "," + tahun + ","+ penulis +"," + penerbit + ","+judul);
                     }
                 } else {
-                    // Copy Data
+                    // copy data
                     bufferedOutput.write(data);
                 }
             } else {
-                // Copy Data
+                // copy data
                 bufferedOutput.write(data);
             }
             bufferedOutput.newLine();
@@ -199,16 +202,19 @@ public class RidwanTugas_65 {
             data = bufferedInput.readLine();
         }
 
+        // menulis data ke file
         bufferedOutput.flush();
-        fileInput.close();
-        bufferedInput.close();
-        fileOutput.close();
-        bufferedOutput.close();
+        ridwanFileInput.close();
+        ridwanFileOutput.close();
         System.gc();
+        database.delete();
+
+        // Delete Original File
         database.delete();
         // Rename File Sementara Ke Database
         tempDB.renameTo(database);
     }
+
     //Operasi
     public static void ridwanHapusData() throws IOException {
         // Ambil Database Original
