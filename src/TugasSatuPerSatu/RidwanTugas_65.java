@@ -1,3 +1,4 @@
+package TugasSatuPerSatu;/*
 /*
  * Nama      : M. Ridwan Alsafir Gusnendar
  * NIM       : 202222031
@@ -559,7 +560,7 @@ public class RidwanTugas_65 {
                 return ridwanPilihan.equalsIgnoreCase("y");
             }
 
-            } else if (ridwanPesan.equalsIgnoreCase("Apakah anda yakin ingin mengupdate data tersebut")) {
+        } else if (ridwanPesan.equalsIgnoreCase("Apakah anda yakin ingin mengupdate data tersebut")) {
             if (ridwanPilihan.equalsIgnoreCase("y")) {
                 System.out.println("Data berhasil diupdate");
                 return ridwanPilihan.equalsIgnoreCase("y");
@@ -568,16 +569,16 @@ public class RidwanTugas_65 {
                 return ridwanPilihan.equalsIgnoreCase("y");
             }
 
-            } else if (ridwanPesan.equalsIgnoreCase("Apakah anda ingin merubah")) {
+        } else if (ridwanPesan.equalsIgnoreCase("Apakah anda ingin merubah")) {
             if (ridwanPilihan.equalsIgnoreCase("y")) {
                 System.out.println("Data berhasil diupdate");
                 return ridwanPilihan.equalsIgnoreCase("y");
             } else {
                 System.out.println("Data tidak jadi diupdate");
                 return ridwanPilihan.equalsIgnoreCase("y");
-        }
+            }
 
-    } else {
+        } else {
             //System.out.println("Salah pada RidwanPesan");
             return ridwanPilihan.equalsIgnoreCase("y");
         }
