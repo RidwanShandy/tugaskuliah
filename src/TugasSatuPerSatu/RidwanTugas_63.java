@@ -1,4 +1,4 @@
-/*
+package TugasSatuPerSatu;/*
  * Nama      : M. Ridwan Alsafir Gusnendar
  * NIM       : 202222031
  * Kelompok  : Teknik Informatika (Sore)
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class RidwanTugas_64 {
+public class RidwanTugas_63 {
 
     public static void main(String[] args) throws IOException {
         //Main Menu
@@ -66,7 +66,7 @@ public class RidwanTugas_64 {
                     System.out.println("\n===============");
                     System.out.println("HAPUS DATA BUKU");
                     System.out.println("===============");
-                    ridwanHapusData();
+                    // hapus ridwanData
                     break;
                 case "6":
                     ridwanLanjut = false;
@@ -80,90 +80,6 @@ public class RidwanTugas_64 {
         }
     }
     //Operasi
-    public static void ridwanHapusData() throws IOException {
-        // Ambil Database Original
-        File database = new File("database.txt");
-        FileReader fileInput = new FileReader(database);
-        BufferedReader bufferedInput = new BufferedReader(fileInput);
-
-        // Buat Database Sementara
-        File tempDB = new File("tempDB.txt");
-        FileWriter fileOutput = new FileWriter(tempDB);
-        BufferedWriter bufferedOutput = new BufferedWriter(fileOutput);
-
-        // Tampilkan Data
-        System.out.println("Daftar Buku");
-        ridwanTampilkanData();
-
-        // Ambil Input User Untuk Delete Data
-        Scanner terminalInput = new Scanner(System.in);
-        System.out.print("\nMasukkan nomor buku yang akan dihapus: ");
-        int deleteNum = terminalInput.nextInt();
-
-        //Looping Untuk Baca Baris Dan Skip Data Yang Akan Didelete
-        boolean isFound = false;
-        int entryCounts = 0;
-
-        String data = bufferedInput.readLine();
-
-        while (data != null) {
-            entryCounts++;
-            boolean isDelete = false;
-
-            StringTokenizer st = new StringTokenizer(data, ",");
-
-            //Tampilkan Data Yang Ingin Dihapus
-            if (deleteNum == entryCounts) {
-                System.out.println("\nData yang ingin anda hapus adalah: ");
-                System.out.println("-------------------------");
-                System.out.println("Referensi   : " + st.nextToken());
-                System.out.println("Tahun       : " + st.nextToken());
-                System.out.println("Penulis     : " + st.nextToken());
-                System.out.println("Penerbit    : " + st.nextToken());
-                System.out.println("Judul       : " + st.nextToken());
-
-                isDelete = ridwanYaAtauTidak("Apakah anda yakin akan menghapus");
-                isFound = true;
-            }
-
-            if (isDelete) {
-
-                System.out.println("Data berhasil dihapus");
-            } else {
-
-                bufferedOutput.write(data);
-                bufferedOutput.newLine();
-            }
-            data = bufferedInput.readLine();
-        }
-
-        if (!isFound) {
-            System.err.println("Buku tidak ditemukan");
-        }
-
-        bufferedOutput.flush();
-        fileInput.close();
-        bufferedInput.close();
-        fileOutput.close();
-        bufferedOutput.close();
-        System.gc();
-        database.delete();
-
-        // Delete Original File
-        if (database.delete()) {
-            System.out.println("File: " + database.getName() + " berhasil dihapus");
-        } else {
-            System.out.println("File: " + database.getName() + " gagal dihapus");
-        }
-        // Rename File Sementara Ke Database
-        if (tempDB.renameTo(database)) {
-            System.out.println("File: " + database.getName() + " berhasil direname");
-        } else {
-            System.out.println("File: " + database.getName() + " gagal direname");
-        }
-
-    }
-    //Operasi
     private static void ridwanTampilkanData() throws IOException {
 
         FileReader ridwanFileInput;
@@ -175,7 +91,6 @@ public class RidwanTugas_64 {
         } catch (Exception e) {
             System.err.println("Database Tidak Ditemukan");
             System.err.println("Silahkan Tambah Data Terlebih Dahulu");
-            ridwanTambahData();
             return;
         }
 
@@ -211,7 +126,6 @@ public class RidwanTugas_64 {
         } catch (Exception e) {
             System.err.println("Database tidak ditemukan!");
             System.err.println("Silahkan tambah data terlebih dahulu");
-            ridwanTambahData();
             return;
         }
 
@@ -361,7 +275,7 @@ public class RidwanTugas_64 {
         return isExist;
     }
     //Utility
-    private static String ridwanAmbilTahun() throws IOException {
+    private static String ridwanAmbilTahun() throws IOException{
         boolean tahunValid = false;
         Scanner terminalInput = new Scanner(System.in);
         String tahunInput = terminalInput.nextLine();
@@ -411,15 +325,6 @@ public class RidwanTugas_64 {
                 return ridwanPilihan.equalsIgnoreCase("y");
             } else {
                 System.out.println("Data tidak jadi ditambahkan");
-                return ridwanPilihan.equalsIgnoreCase("y");
-            }
-
-        } else if (ridwanPesan.equalsIgnoreCase("Apakah anda yakin akan menghapus")) {
-            if (ridwanPilihan.equalsIgnoreCase("y")) {
-                System.out.println("Data berhasil dihapus");
-                return ridwanPilihan.equalsIgnoreCase("y");
-            } else {
-                System.out.println("Data tidak jadi dihapus");
                 return ridwanPilihan.equalsIgnoreCase("y");
             }
 

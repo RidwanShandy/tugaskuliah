@@ -1,4 +1,4 @@
-/*
+package TugasSatuPerSatu;/*
  * Nama      : M. Ridwan Alsafir Gusnendar
  * NIM       : 202222031
  * Kelompok  : Teknik Informatika (Sore)

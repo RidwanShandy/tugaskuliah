@@ -1,4 +1,4 @@
-/*
+package TugasSatuPerSatu;/*
  * Nama      : M. Ridwan Alsafir Gusnendar
  * NIM       : 202222031
  * Kelompok  : Teknik Informatika (Sore)
@@ -6,12 +6,13 @@
 
 // Baca Data
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class RidwanTugas_61 {
+public class RidwanTugas_62 {
 
     public static void main(String[] args) throws IOException {
         //Main Menu
@@ -39,46 +40,99 @@ public class RidwanTugas_61 {
                     System.out.println("=================");
                     ridwanTampilkanData();
                     break;
-
                 case "2":
                     System.out.println("\n=========");
                     System.out.println("CARI BUKU");
                     System.out.println("=========");
                     // cari ridwanData
+                    ridwanCariData();
                     break;
-
                 case "3":
                     System.out.println("\n================");
                     System.out.println("TAMBAH DATA BUKU");
                     System.out.println("================");
                     // tambah ridwanData
                     break;
-
                 case "4":
                     System.out.println("\n==============");
                     System.out.println("UBAH DATA BUKU");
                     System.out.println("==============");
                     // ubah ridwanData
                     break;
-
                 case "5":
                     System.out.println("\n===============");
                     System.out.println("HAPUS DATA BUKU");
                     System.out.println("===============");
                     // hapus ridwanData
                     break;
-
                 case "6":
                     ridwanLanjut = false;
                     ridwanLanjut = ridwanYaAtauTidak("Apakah anda ingin keluar");
                     continue;
-
                 default:
                     System.err.println("\nInput anda tidak ditemukan\nSilahkan pilih [1-6]");
             }
-
             ridwanLanjut = ridwanYaAtauTidak("Apakah Anda ingin melanjutkan");
         }
+    }
+    //Operasi
+    private static void ridwanCariData() throws IOException {
+
+        //Membaca database ada atau tidak
+        try {
+            File file = new File ("database.txt");
+        } catch (Exception e) {
+            System.err.println("Database tidak ditemukan!");
+            System.err.println("Silahkan tambah data terlebih dahulu");
+            return;
+        }
+
+        //Ambil keyword dari user
+        Scanner terminalInput = new Scanner(System.in);
+        System.out.print("Masukkan kata kunci untuk mencari buku: ");
+        String ridwanCariString = terminalInput.nextLine();
+        String[] keywords = ridwanCariString.split ("\\s+");
+
+        //Cek Keyword di Database
+        ridwanCekBukuDiDatabase (keywords);
+    }
+    //Utility
+    private static void ridwanCekBukuDiDatabase (String[] keywords) throws IOException {
+
+        FileReader fileInput = new FileReader("database.txt");
+        BufferedReader bufferInput = new BufferedReader(fileInput);
+
+        String data = bufferInput.readLine();
+        boolean ridwanIsExist;
+        int ridwanNomorData = 0;
+        System.out.println("\n| No |\tTahun |\tPenulis                |\tPenerbit               |\tJudul Buku");
+        System.out.println("----------------------------------------------------------------------------------------------------------");
+
+        while (data != null) {
+            //Cek Keyword di Dalam Baris
+            ridwanIsExist = true;
+
+            for (String keyword : keywords) {
+                ridwanIsExist = ridwanIsExist && data.toLowerCase().contains(keyword.toLowerCase());
+            }
+
+            //Apabila Keyword Cocok Maka Tampilkan
+            if (ridwanIsExist) {
+                ridwanNomorData++;
+                StringTokenizer stringToken = new StringTokenizer(data, ",");
+
+                stringToken.nextToken();
+                System.out.printf("| %2d ", ridwanNomorData);
+                System.out.printf("|\t%4s ", stringToken.nextToken());
+                System.out.printf("|\t%-20s ", stringToken.nextToken());
+                System.out.printf("|\t%-20s ", stringToken.nextToken());
+                System.out.printf("|\t%s ", stringToken.nextToken());
+                System.out.print("\n");
+            }
+
+            data = bufferInput.readLine();
+        }
+        System.out.println("----------------------------------------------------------------------------------------------------------");
     }
     //Operasi
     private static void ridwanTampilkanData() throws IOException {
@@ -143,12 +197,14 @@ public class RidwanTugas_61 {
                 System.out.println("Dibuat oleh M. Ridwan Alsafir Gusnendar");
                 return ridwanPilihan.equalsIgnoreCase("y");
             }
+
         } else {
             //System.out.println("Salah pada RidwanPesan");
             return ridwanPilihan.equalsIgnoreCase("t");
         }
     }
 
+    //Utility
     private static void ridwanHapusLayar(){
         try {
             if (System.getProperty("os.name").contains("Windows")){
